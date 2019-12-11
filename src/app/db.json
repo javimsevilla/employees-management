@@ -5,42 +5,42 @@
       "name": "Sonia",
       "lastName": "Wynn",
       "age": 34,
-      "startDate": "Mon Dec 09 2019 18:43:46 GMT+0100 (hora estándar de Europa central)"
+      "startDate": 1487030400000
     },
     {
       "id": 1,
       "name": "Benita",
       "lastName": "Campbell",
       "age": 39,
-      "startDate": "Mon Dec 09 2019 18:43:46 GMT+0100 (hora estándar de Europa central)"
+      "startDate": 1492560000000
     },
     {
       "id": 2,
       "name": "Dale",
       "lastName": "Blackburn",
       "age": 28,
-      "startDate": "Mon Dec 09 2019 18:43:46 GMT+0100 (hora estándar de Europa central)"
+      "startDate": 1521590400000
     },
     {
       "id": 3,
       "name": "Aguilar",
       "lastName": "Miles",
       "age": 39,
-      "startDate": "Mon Dec 09 2019 18:43:46 GMT+0100 (hora estándar de Europa central)"
+      "startDate": 1548201600000
     },
     {
       "id": 4,
       "name": "Virginia",
       "lastName": "Landry",
       "age": 30,
-      "startDate": "Mon Dec 09 2019 18:43:46 GMT+0100 (hora estándar de Europa central)"
+      "startDate": 1543708800000
     },
     {
       "id": 5,
       "name": "White",
       "lastName": "Meyers",
       "age": 37,
-      "startDate": "Mon Dec 09 2019 18:43:46 GMT+0100 (hora estándar de Europa central)"
+      "startDate": 1574467200000
     }
   ],
   "departments": [
