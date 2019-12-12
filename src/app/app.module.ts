@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppCoreModule } from './app-core/app-core.module';
-import { AppStoreModule } from './store/app-store.module';
+import { AppCoreModule } from './core';
+import { AppStoreModule } from './store';
 
 @NgModule({
   declarations: [AppComponent],
