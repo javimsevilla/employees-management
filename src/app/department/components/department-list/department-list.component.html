@@ -4,13 +4,22 @@
   *ngIf="loading$ | async; then loading; else departments"
 ></ng-container>
 
+<app-fab-button (click)="createDepartment()">
+  <mat-icon aria-hidden="false" aria-label="Add new">add</mat-icon>
+</app-fab-button>
+
 <ng-template #loading>Cargando...</ng-template>
 
 <ng-template #departments>
-  <ul>
+  <!-- <ul>
     <li *ngFor="let department of departments$ | async">
       <p>id: {{ department.id }}</p>
       <p>name: {{ department.name }}</p>
     </li>
-  </ul>
+  </ul> -->
+  <div class="department-list">
+    <app-list-item *ngFor="let department of departments$ | async">
+      {{ department.name }}
+    </app-list-item>
+  </div>
 </ng-template>

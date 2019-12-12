@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { containers } from './containers';
+import { components } from './components';
 
 @NgModule({
-  declarations: [...containers],
+  declarations: [...components],
   imports: [CommonModule],
-  exports: [...containers]
+  exports: [...components]
 })
 export class AppDepartmentModule {}

@@ -20,4 +20,8 @@ export class DepartmentListComponent implements OnInit {
   ngOnInit() {
     this.departmentService.getAll();
   }
+
+  createDepartment() {
+    this.departmentService.add({ id: null, name: 'Nuevo departamento' });
+  }
 }
