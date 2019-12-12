@@ -1,1 +1,16 @@
-<p>department-list works!</p>
+<h1>Departamentos</h1>
+
+<ng-container
+  *ngIf="loading$ | async; then loading; else departments"
+></ng-container>
+
+<ng-template #loading>Cargando...</ng-template>
+
+<ng-template #departments>
+  <ul>
+    <li *ngFor="let department of departments$ | async">
+      <p>id: {{ department.id }}</p>
+      <p>name: {{ department.name }}</p>
+    </li>
+  </ul>
+</ng-template>

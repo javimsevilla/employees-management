@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Department } from '../../../core/models';
+import { DepartmentService } from '../../../core/services';
 
 @Component({
   selector: 'app-department-list',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./department-list.component.scss']
 })
 export class DepartmentListComponent implements OnInit {
+  departments$: Observable<Department[]>;
+  loading$: Observable<boolean>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private departmentService: DepartmentService) {
+    this.departments$ = departmentService.entities$;
+    this.loading$ = departmentService.loading$;
   }
 
+  ngOnInit() {
+    this.departmentService.getAll();
+  }
 }
