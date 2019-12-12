@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AppRoutingModule } from '../app-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { AppRoutingModule } from '../app-routing.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { components } from './components';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [...components],
   imports: [
     CommonModule,
     LayoutModule,
@@ -21,6 +22,6 @@ import { AppRoutingModule } from '../app-routing.module';
     MatListModule,
     AppRoutingModule
   ],
-  exports: [DashboardComponent]
+  exports: [...components]
 })
 export class AppCoreModule {}
