@@ -1,1 +1,13 @@
-<p>employee-list works!</p>
+<h1>Empleados</h1>
+
+<app-list-item
+  *ngFor="let employee of employees$ | async; trackBy: trackByEmployee"
+  (delete)="deleteEmployee(employee)"
+  (itemSelected)="editEmployee(employee)"
+>
+  {{ employee.name }} {{ employee.lastName }}
+</app-list-item>
+
+<app-fab-button (click)="addNewEmployee()">
+  <mat-icon aria-hidden="false" aria-label="New">add</mat-icon>
+</app-fab-button>
