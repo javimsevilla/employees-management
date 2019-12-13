@@ -60,7 +60,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       .open(EmployeeDetailDialogComponent, {
         data: {
           employee,
-          buttonLabel: 'Modificar el empleado'
+          buttonLabel: 'Guardar datos del empleado',
+          titleLabel: 'Modificar empleado'
         } as EmployeeDetailDialogData
       })
       .afterClosed()
@@ -71,7 +72,22 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       });
   }
 
-  addNewEmployee() {}
+  addNewEmployee() {
+    this.subs.sink = this.dialog
+      .open(EmployeeDetailDialogComponent, {
+        data: {
+          employee: null,
+          buttonLabel: 'Crear empleado',
+          titleLabel: 'Alta empleado'
+        } as EmployeeDetailDialogData
+      })
+      .afterClosed()
+      .subscribe(newEmployee => {
+        if (newEmployee) {
+          this.employeeService.add(newEmployee);
+        }
+      });
+  }
 
   trackByEmployee(index: number, employee: Employee) {
     return employee.id;

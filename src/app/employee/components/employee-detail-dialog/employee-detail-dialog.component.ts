@@ -9,7 +9,7 @@ import { formatDate } from '@angular/common';
   templateUrl: './employee-detail-dialog.component.html',
   styleUrls: ['./employee-detail-dialog.component.scss']
 })
-export class EmployeeDetailDialogComponent {
+export class EmployeeDetailDialogComponent implements OnInit {
   employeeForm: FormGroup;
 
   constructor(
@@ -17,18 +17,30 @@ export class EmployeeDetailDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: EmployeeDetailDialogData,
     @Inject(LOCALE_ID) private locale: string,
     private fb: FormBuilder
-  ) {
+  ) {}
+
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    const employee = {
+      name: this.data.employee ? this.data.employee.name || '' : '',
+      lastName: this.data.employee ? this.data.employee.lastName || '' : '',
+      age: this.data.employee ? this.data.employee.age || '' : '',
+      startDate: this.data.employee
+        ? this.formatDate(this.data.employee.startDate) || ''
+        : ''
+    };
+
     this.employeeForm = this.fb.group({
-      name: [data.employee.name || '', Validators.required],
-      lastName: [data.employee.lastName || '', Validators.required],
+      name: [employee.name, Validators.required],
+      lastName: [employee.lastName, Validators.required],
       age: [
-        data.employee.age || '',
+        employee.age,
         [Validators.required, Validators.min(16), Validators.max(70)]
       ],
-      startDate: [
-        this.formatDate(data.employee.startDate) || '',
-        Validators.required
-      ]
+      startDate: [employee.startDate, Validators.required]
     });
   }
 
@@ -39,6 +51,10 @@ export class EmployeeDetailDialogComponent {
         ...this.employeeForm.value
       });
     }
+  }
+
+  isFormDisabled() {
+    return this.employeeForm.invalid || this.employeeForm.pristine;
   }
 
   private formatDate(date: Date): string {

@@ -54,7 +54,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button (click)="closeDialog()" [disabled]="employeeForm.invalid">
+  <button mat-button (click)="closeDialog()" [disabled]="isFormDisabled()">
     {{ data.buttonLabel }}
   </button>
 </mat-dialog-actions>
