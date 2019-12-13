@@ -1,0 +1,15 @@
+<h1>Departamentos</h1>
+
+<div class="department-list">
+  <app-list-item
+    *ngFor="let department of departments$ | async; trackBy: trackByDepartments"
+    (delete)="deleteDepartment(department)"
+    (itemSelected)="viewDepartmentEmployees(department.id)"
+  >
+    {{ department.name }}
+  </app-list-item>
+</div>
+
+<app-fab-button (click)="createNewDepartment()">
+  <mat-icon aria-hidden="false" aria-label="New">add</mat-icon>
+</app-fab-button>

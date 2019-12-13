@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmployeeListComponent } from './employee/containers';
+import { DepartmentListComponent } from './department/components';
 
 const routes: Routes = [
   {
     path: '',
     component: EmployeeListComponent
+  },
+  {
+    path: 'departments',
+    component: DepartmentListComponent
   },
   {
     path: '**',

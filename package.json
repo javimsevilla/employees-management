@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "json-server": "json-server --watch src/app/db.json --routes src/app/routes.json"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +29,7 @@
     "@ngrx/store-devtools": "^8.5.2",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.4.0",
+    "subsink": "^1.0.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

@@ -44,10 +44,25 @@
     }
   ],
   "departments": [
-    { "id": 0, "name": "Management" },
-    { "id": 1, "name": "Marketing" },
-    { "id": 2, "name": "Sales" },
-    { "id": 3, "name": "Development" },
-    { "id": 4, "name": "I+D" }
+    {
+      "id": 0,
+      "name": "Ejecutivo"
+    },
+    {
+      "id": 1,
+      "name": "Marketing"
+    },
+    {
+      "id": 2,
+      "name": "Ventas"
+    },
+    {
+      "id": 3,
+      "name": "Desarrollo"
+    },
+    {
+      "id": 4,
+      "name": "I+D"
+    }
   ]
 }

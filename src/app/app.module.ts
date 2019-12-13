@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppCoreModule } from './core';
 import { AppStoreModule } from './store';
 import { AppEmployeeModule } from './employee/app-employee.module';
+import { AppDepartmentModule } from './department/app-department.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,8 @@ import { AppEmployeeModule } from './employee/app-employee.module';
     BrowserAnimationsModule,
     AppCoreModule,
     AppStoreModule,
-    AppEmployeeModule
+    AppEmployeeModule,
+    AppDepartmentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

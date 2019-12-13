@@ -1,0 +1,8 @@
+<div class="list-item-container">
+  <button (click)="emitDelete()" mat-icon-button aria-label="Delete">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <mat-card (click)="emitItemSelected()" class="list-item-card">
+    <ng-content></ng-content>
+  </mat-card>
+</div>
