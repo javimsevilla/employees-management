@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Alta empleado</h2>
+<mat-dialog-content>
+  <form [formGroup]="employeeForm">
+    <mat-form-field>
+      <input matInput placeholder="Nombre" formControlName="name" required />
+      <mat-error *ngIf="employeeForm.get('name').hasError('required')"
+        >No puede estar vacío</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Apellido"
+        formControlName="lastName"
+        required
+      />
+      <mat-error *ngIf="employeeForm.get('lastName').hasError('required')"
+        >No puede estar vacío</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="number"
+        matInput
+        placeholder="Edad"
+        formControlName="age"
+        min="16"
+        max="70"
+        required
+      />
+      <mat-error *ngIf="employeeForm.get('age').hasError('required')"
+        >No puede estar vacío</mat-error
+      >
+      <mat-error *ngIf="employeeForm.get('age').hasError('min')"
+        >No puede ser menor de 16 años</mat-error
+      >
+      <mat-error *ngIf="employeeForm.get('age').hasError('max')"
+        >No puede ser mayor de 70 años</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="date"
+        matInput
+        placeholder="Fecha"
+        formControlName="startDate"
+        required
+      />
+      <mat-error *ngIf="employeeForm.get('startDate').hasError('required')"
+        >No puede estar vacío</mat-error
+      >
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="closeDialog()" [disabled]="employeeForm.invalid">
+    {{ data.buttonLabel }}
+  </button>
+</mat-dialog-actions>

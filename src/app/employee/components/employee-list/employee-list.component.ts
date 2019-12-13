@@ -8,6 +8,9 @@ import {
   DeleteEmployeeConfirmationDialogComponent
 } from '../delete-employee-confirmation-dialog/delete-employee-confirmation-dialog.component';
 import { SubSink } from 'subsink';
+import { EmployeeDetailDialogComponent } from '../employee-detail-dialog/employee-detail-dialog.component';
+import { EmployeeDetailDialogData } from '../../models';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employee-list',
@@ -22,12 +25,19 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     private employeeService: EmployeeService,
     private dialog: MatDialog
   ) {
-    this.employees$ = employeeService.entities$;
+    this.employees$ = employeeService.entities$.pipe(
+      map(employees =>
+        employees.map(employee => ({
+          ...employee,
+          startDate: employee.startDate ? new Date(employee.startDate) : null
+        }))
+      )
+    );
     this.subs = new SubSink();
   }
 
   ngOnInit() {
-    this.employeeService.getAllEmployees();
+    this.employeeService.getAll();
   }
 
   ngOnDestroy() {
@@ -45,7 +55,21 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       });
   }
 
-  editEmployee(employee: Employee) {}
+  editEmployee(employee: Employee) {
+    this.subs.sink = this.dialog
+      .open(EmployeeDetailDialogComponent, {
+        data: {
+          employee,
+          buttonLabel: 'Modificar el empleado'
+        } as EmployeeDetailDialogData
+      })
+      .afterClosed()
+      .subscribe(modifiedEmployee => {
+        if (modifiedEmployee) {
+          this.employeeService.update(modifiedEmployee);
+        }
+      });
+  }
 
   addNewEmployee() {}
 
