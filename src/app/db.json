@@ -5,42 +5,48 @@
       "name": "Benita",
       "lastName": "Campbell",
       "age": 39,
-      "startDate": 1492560000000
+      "startDate": 1492560000000,
+      "departmentId": 1
     },
     {
       "id": 2,
       "name": "Dale",
       "lastName": "Blackburn",
       "age": 28,
-      "startDate": 1521590400000
+      "startDate": 1521590400000,
+      "departmentId": 1
     },
     {
       "id": 3,
       "name": "Aguilar",
       "lastName": "Miles",
       "age": 39,
-      "startDate": 1548201600000
+      "startDate": 1548201600000,
+      "departmentId": 1
     },
     {
       "id": 4,
       "name": "Virginia",
       "lastName": "Landry",
       "age": 30,
-      "startDate": 1543708800000
+      "startDate": 1543708800000,
+      "departmentId": 1
     },
     {
       "id": 5,
       "name": "White",
       "lastName": "Meyers",
       "age": 37,
-      "startDate": 1574467200000
+      "startDate": 1574467200000,
+      "departmentId": 1
     },
     {
       "id": 6,
       "name": "Sonia",
       "lastName": "Wynn",
       "age": 34,
-      "startDate": 1487030400000
+      "startDate": 1487030400000,
+      "departmentId": 1
     }
   ],
   "departments": [
