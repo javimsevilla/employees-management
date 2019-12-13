@@ -1,13 +1,6 @@
 {
   "employees": [
     {
-      "id": 0,
-      "name": "Sonia",
-      "lastName": "Wynn",
-      "age": 34,
-      "startDate": 1487030400000
-    },
-    {
       "id": 1,
       "name": "Benita",
       "lastName": "Campbell",
@@ -41,13 +34,16 @@
       "lastName": "Meyers",
       "age": 37,
       "startDate": 1574467200000
+    },
+    {
+      "id": 6,
+      "name": "Sonia",
+      "lastName": "Wynn",
+      "age": 34,
+      "startDate": 1487030400000
     }
   ],
   "departments": [
-    {
-      "id": 0,
-      "name": "Ejecutivo"
-    },
     {
       "id": 1,
       "name": "Marketing"
@@ -63,6 +59,10 @@
     {
       "id": 4,
       "name": "I+D"
+    },
+    {
+      "id": 5,
+      "name": "Ejecutivo"
     }
   ]
 }
