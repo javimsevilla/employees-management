@@ -7,11 +7,10 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>Menú</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item [routerLink]="['/']">Empleados</a>
+      <a mat-list-item [routerLink]="['/departments']">Departamentos</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -25,10 +24,8 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Employee management</span>
+      <a class="app-title" [routerLink]="['/']">Gestión de empleados</a>
     </mat-toolbar>
     <router-outlet></router-outlet>
-    employees:
-    <pre>{{ employees$ | async | json }}</pre>
   </mat-sidenav-content>
 </mat-sidenav-container>
