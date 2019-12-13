@@ -1,25 +1,15 @@
 <h1>Departamentos</h1>
 
-<ng-container
-  *ngIf="loading$ | async; then loading; else departments"
-></ng-container>
+<div class="department-list">
+  <app-list-item
+    *ngFor="let department of departments$ | async; trackBy: trackByDepartments"
+    (delete)="deleteDepartment(department)"
+    (itemSelected)="viewDepartmentEmployees(department.id)"
+  >
+    {{ department.name }}
+  </app-list-item>
+</div>
 
-<app-fab-button (click)="createDepartment()">
-  <mat-icon aria-hidden="false" aria-label="Add new">add</mat-icon>
+<app-fab-button (click)="createNewDepartment()">
+  <mat-icon aria-hidden="false" aria-label="New">add</mat-icon>
 </app-fab-button>
-
-<ng-template #loading>Cargando...</ng-template>
-
-<ng-template #departments>
-  <!-- <ul>
-    <li *ngFor="let department of departments$ | async">
-      <p>id: {{ department.id }}</p>
-      <p>name: {{ department.name }}</p>
-    </li>
-  </ul> -->
-  <div class="department-list">
-    <app-list-item *ngFor="let department of departments$ | async">
-      {{ department.name }}
-    </app-list-item>
-  </div>
-</ng-template>
