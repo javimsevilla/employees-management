@@ -46,7 +46,7 @@
   "departments": [
     {
       "id": 0,
-      "name": "Management"
+      "name": "Ejecutivo"
     },
     {
       "id": 1,
@@ -54,11 +54,11 @@
     },
     {
       "id": 2,
-      "name": "Sales"
+      "name": "Ventas"
     },
     {
       "id": 3,
-      "name": "Development"
+      "name": "Desarrollo"
     },
     {
       "id": 4,
