@@ -5,10 +5,6 @@ import { DepartmentListComponent } from './department/components';
 
 const routes: Routes = [
   {
-    path: '',
-    component: EmployeeListComponent
-  },
-  {
     path: 'employees',
     component: EmployeeListComponent
   },
@@ -17,8 +13,9 @@ const routes: Routes = [
     component: DepartmentListComponent
   },
   {
-    path: '**',
-    redirectTo: '/'
+    path: '',
+    redirectTo: '/employees',
+    pathMatch: 'prefix'
   }
 ];
 
