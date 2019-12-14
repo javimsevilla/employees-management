@@ -7,11 +7,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { components, entryComponents } from './components';
+import { AppDepartmentRoutingModule } from './app-department-routing.module';
 
 @NgModule({
   declarations: [...components],
   imports: [
     CommonModule,
+    AppDepartmentRoutingModule,
     AppSharedModule,
     MatIconModule,
     MatDialogModule,

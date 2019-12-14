@@ -17,8 +17,7 @@ import { AppDepartmentModule } from './department/app-department.module';
     BrowserAnimationsModule,
     AppCoreModule,
     AppStoreModule,
-    AppEmployeeModule,
-    AppDepartmentModule
+    AppEmployeeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

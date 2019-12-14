@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmployeeListComponent } from './employee/components';
-import { DepartmentListComponent } from './department/components';
 
 const routes: Routes = [
   {
@@ -10,7 +9,10 @@ const routes: Routes = [
   },
   {
     path: 'departments',
-    component: DepartmentListComponent
+    loadChildren: () =>
+      import('./department/app-department.module').then(
+        mod => mod.AppDepartmentModule
+      )
   },
   {
     path: '',
