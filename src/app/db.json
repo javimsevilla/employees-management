@@ -14,7 +14,7 @@
       "lastName": "Blackburn",
       "age": 28,
       "startDate": 1521590400000,
-      "departmentId": 1
+      "departmentId": 2
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "lastName": "Miles",
       "age": 39,
       "startDate": 1548201600000,
-      "departmentId": 1
+      "departmentId": 3
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "lastName": "Landry",
       "age": 30,
       "startDate": 1543708800000,
-      "departmentId": 1
+      "departmentId": 4
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "lastName": "Meyers",
       "age": 37,
       "startDate": 1574467200000,
-      "departmentId": 1
+      "departmentId": 5
     },
     {
       "id": 6,
@@ -46,7 +46,7 @@
       "lastName": "Wynn",
       "age": 34,
       "startDate": 1487030400000,
-      "departmentId": 1
+      "departmentId": 3
     }
   ],
   "departments": [
