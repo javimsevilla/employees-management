@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Department } from '../../../core/models';
-import { DepartmentService } from '../../../core/services';
+import { DepartmentService, EmployeeService } from '../../../core/services';
 import { MatDialog } from '@angular/material/dialog';
 import { NewDepartmentDialogComponent } from '../new-department-dialog/new-department-dialog.component';
 import { SubSink } from 'subsink';
@@ -25,7 +25,8 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
   constructor(
     private departmentService: DepartmentService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private employeeService: EmployeeService
   ) {
     this.departments$ = departmentService.entities$;
     this.loading$ = departmentService.loading$;
@@ -66,6 +67,9 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         if (result) {
           this.departmentService.delete(department);
+          /* It is necessary to clear employees cache to refresh
+             employee list */
+          this.employeeService.clearCache();
         }
       });
   }

@@ -141,7 +141,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         })
       );
     } else {
-      return (this.employees$ = this.getEmployees());
+      this.employees$ = this.getEmployees();
     }
   }
 
