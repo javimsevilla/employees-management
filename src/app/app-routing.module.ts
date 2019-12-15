@@ -1,11 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DepartmentListComponent } from './department/components';
+import { EmployeeListComponent } from './employee/components';
 
 const routes: Routes = [
   {
+    path: 'employees',
+    component: EmployeeListComponent
+  },
+  {
     path: 'departments',
-    component: DepartmentListComponent
+    loadChildren: () =>
+      import('./department/app-department.module').then(
+        mod => mod.AppDepartmentModule
+      )
+  },
+  {
+    path: '',
+    redirectTo: '/employees',
+    pathMatch: 'prefix'
   }
 ];
 

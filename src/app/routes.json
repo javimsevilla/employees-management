@@ -1,5 +1,6 @@
 {
   "/employee/:id": "/employees/:id",
   "/department/:id": "/departments/:id",
-  "/department": "/departments"
+  "/department": "/departments",
+  "/employee": "/employees"
 }

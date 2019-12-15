@@ -4,4 +4,5 @@ export interface Employee {
   lastName: string;
   age: number;
   startDate: Date;
+  departmentId: number;
 }
