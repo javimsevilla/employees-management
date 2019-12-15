@@ -1,6 +1,6 @@
 <h1>Empleados</h1>
 
-<mat-form-field class="department-selector">
+<mat-form-field class="full-width">
   <mat-label>Ver empleados de</mat-label>
   <mat-select
     (selectionChange)="filterEmployeesByDepartment($event)"
@@ -14,6 +14,15 @@
       {{ department.name | lowercase }}
     </mat-option>
   </mat-select>
+</mat-form-field>
+
+<mat-form-field class="full-width">
+  <input
+    type="date"
+    matInput
+    placeholder="Ver empleados desde"
+    (change)="filterByStartDate($event.target.value)"
+  />
 </mat-form-field>
 
 <app-list-item

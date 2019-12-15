@@ -36,26 +36,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.employees$ = combineLatest(
-      this.employeeService.entities$,
-      this.route.params
-    ).pipe(
-      map(([employees, params]) => {
-        if (params && params.departmentId) {
-          return employees.filter(
-            employee => employee.departmentId === +params.departmentId
-          );
-        } else {
-          return employees;
-        }
-      }),
-      map(employees =>
-        employees.map(employee => ({
-          ...employee,
-          startDate: employee.startDate ? new Date(employee.startDate) : null
-        }))
-      )
-    );
+    this.employees$ = this.getEmployees();
 
     this.departments$ = this.departmentService.entities$;
 
@@ -144,6 +125,46 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         }
         return -1;
       })
+    );
+  }
+
+  filterByStartDate(date: string) {
+    if (date) {
+      const selectedDateTime = new Date(date).getTime();
+      this.employees$ = this.getEmployees().pipe(
+        map(employees => {
+          return employees.filter(
+            employee =>
+              employee.startDate &&
+              employee.startDate.getTime() >= selectedDateTime
+          );
+        })
+      );
+    } else {
+      return (this.employees$ = this.getEmployees());
+    }
+  }
+
+  getEmployees() {
+    return combineLatest(
+      this.employeeService.entities$,
+      this.route.params
+    ).pipe(
+      map(([employees, params]) => {
+        if (params && params.departmentId) {
+          return employees.filter(
+            employee => employee.departmentId === +params.departmentId
+          );
+        } else {
+          return employees;
+        }
+      }),
+      map(employees =>
+        employees.map(employee => ({
+          ...employee,
+          startDate: employee.startDate ? new Date(employee.startDate) : null
+        }))
+      )
     );
   }
 }
