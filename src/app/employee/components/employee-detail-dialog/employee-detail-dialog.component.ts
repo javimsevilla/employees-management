@@ -3,6 +3,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EmployeeDetailDialogData } from '../../models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
+import { DepartmentService } from 'src/app/core/services';
+import { Department } from 'src/app/core/models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-employee-detail-dialog',
@@ -11,15 +14,20 @@ import { formatDate } from '@angular/common';
 })
 export class EmployeeDetailDialogComponent implements OnInit {
   employeeForm: FormGroup;
+  departments$: Observable<Department[]>;
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: EmployeeDetailDialogData,
     @Inject(LOCALE_ID) private locale: string,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private departmentService: DepartmentService
+  ) {
+    this.departments$ = this.departmentService.entities$;
+  }
 
   ngOnInit() {
+    this.departmentService.getAll();
     this.initForm();
   }
 
@@ -30,7 +38,10 @@ export class EmployeeDetailDialogComponent implements OnInit {
       age: this.data.employee ? this.data.employee.age || '' : '',
       startDate: this.data.employee
         ? this.formatDate(this.data.employee.startDate) || ''
-        : ''
+        : '',
+      departmentId: this.data.employee
+        ? this.data.employee.departmentId || -1
+        : -1
     };
 
     this.employeeForm = this.fb.group({
@@ -40,7 +51,11 @@ export class EmployeeDetailDialogComponent implements OnInit {
         employee.age,
         [Validators.required, Validators.min(16), Validators.max(70)]
       ],
-      startDate: [employee.startDate, Validators.required]
+      startDate: [employee.startDate, Validators.required],
+      departmentId: [
+        employee.departmentId,
+        [Validators.required, Validators.min(1)]
+      ]
     });
   }
 

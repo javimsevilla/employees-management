@@ -1,17 +1,47 @@
 <h1>Empleados</h1>
 
+<mat-form-field class="department-selector">
+  <mat-label>Ver empleados de</mat-label>
+  <mat-select
+    (selectionChange)="filterEmployeesByDepartment($event)"
+    [value]="selectedDepartmentId$ | async"
+  >
+    <mat-option [value]="-1">todos los departamentos</mat-option>
+    <mat-option
+      *ngFor="let department of departments$ | async"
+      [value]="department.id"
+    >
+      {{ department.name | lowercase }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
 <app-list-item
   *ngFor="let employee of employees$ | async; trackBy: trackByEmployee"
   (delete)="deleteEmployee(employee)"
   (itemSelected)="editEmployee(employee)"
 >
-  <div style="display: flex; justify-content: space-between;">
-    <span style="width: 25%">{{ employee.name }}</span>
-    <span style="width: 25%">{{ employee.lastName }}</span>
-    <span style="width: 25%">{{ employee.age }}</span>
-    <span style="width: 25%">{{
-      employee.startDate | date: 'dd/MM/yyyy'
-    }}</span>
+  <div class="employee-data">
+    <div class="employee-data-column employee-name">
+      <span class="employee-data-label">Nombre</span>
+      <span>{{ employee.name }}</span>
+    </div>
+    <div class="employee-data-column employee-last-name">
+      <span class="employee-data-label">Apellido</span>
+      <span>{{ employee.lastName }}</span>
+    </div>
+    <div class="employee-data-column employee-age">
+      <span class="employee-data-label">Edad</span>
+      <span>{{ employee.age }}</span>
+    </div>
+    <div class="employee-data-column employee-start-date">
+      <span class="employee-data-label">Antiguedad</span>
+      <span>{{ employee.startDate | date: 'dd/MM/yyyy' }}</span>
+    </div>
+    <div class="employee-data-column employee-department">
+      <span class="employee-data-label">Departamento</span>
+      <span>{{ getDepartmentNameById(employee.departmentId) | async }}</span>
+    </div>
   </div>
 </app-list-item>
 

@@ -75,6 +75,6 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
   }
 
   viewDepartmentEmployees(id: number) {
-    this.router.navigate(['/employees']); // TODO
+    this.router.navigate(['/employees', { departmentId: id }]);
   }
 }

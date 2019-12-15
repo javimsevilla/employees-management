@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { EmployeeService } from 'src/app/core/services';
-import { Employee } from 'src/app/core/models';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { EmployeeService, DepartmentService } from 'src/app/core/services';
+import { Employee, Department } from 'src/app/core/models';
+import { Observable, combineLatest } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 // prettier-ignore
 import {
@@ -10,7 +10,9 @@ import {
 import { SubSink } from 'subsink';
 import { EmployeeDetailDialogComponent } from '../employee-detail-dialog/employee-detail-dialog.component';
 import { EmployeeDetailDialogData } from '../../models';
-import { map } from 'rxjs/operators';
+import { map, tap, withLatestFrom, first } from 'rxjs/operators';
+import { MatSelectChange } from '@angular/material/select';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -19,13 +21,34 @@ import { map } from 'rxjs/operators';
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
   employees$: Observable<Employee[]>;
+  departments$: Observable<Department[]>;
   subs: SubSink;
 
   constructor(
     private employeeService: EmployeeService,
-    private dialog: MatDialog
+    private departmentService: DepartmentService,
+    private dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {
-    this.employees$ = employeeService.entities$.pipe(
+    this.subs = new SubSink();
+  }
+
+  ngOnInit() {
+    this.employees$ = combineLatest(
+      this.employeeService.entities$,
+      this.route.params
+    ).pipe(
+      map(([employees, params]) => {
+        if (params && params.departmentId) {
+          return employees.filter(
+            employee => employee.departmentId === +params.departmentId
+          );
+        } else {
+          return employees;
+        }
+      }),
       map(employees =>
         employees.map(employee => ({
           ...employee,
@@ -33,11 +56,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         }))
       )
     );
-    this.subs = new SubSink();
-  }
 
-  ngOnInit() {
+    this.departments$ = this.departmentService.entities$;
+
     this.employeeService.getAll();
+    this.departmentService.getAll();
   }
 
   ngOnDestroy() {
@@ -60,7 +83,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       .open(EmployeeDetailDialogComponent, {
         data: {
           employee,
-          buttonLabel: 'Guardar datos del empleado',
           titleLabel: 'Modificar empleado'
         } as EmployeeDetailDialogData
       })
@@ -77,7 +99,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       .open(EmployeeDetailDialogComponent, {
         data: {
           employee: null,
-          buttonLabel: 'Crear empleado',
           titleLabel: 'Alta empleado'
         } as EmployeeDetailDialogData
       })
@@ -91,5 +112,38 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
   trackByEmployee(index: number, employee: Employee) {
     return employee.id;
+  }
+
+  filterEmployeesByDepartment(selectChange: MatSelectChange) {
+    if (selectChange.value === -1) {
+      this.router.navigate(['/employees']);
+    } else {
+      this.router.navigate([
+        '/employees',
+        { departmentId: selectChange.value }
+      ]);
+    }
+  }
+
+  getDepartmentNameById(departmentId: number) {
+    return this.departments$.pipe(
+      map(departments =>
+        departments.filter(department => department.id === departmentId)
+      ),
+      map(departments =>
+        departments && departments.length > 0 ? departments[0].name : ''
+      )
+    );
+  }
+
+  get selectedDepartmentId$() {
+    return this.route.params.pipe(
+      map(params => {
+        if (params && params.departmentId) {
+          return +params.departmentId;
+        }
+        return -1;
+      })
+    );
   }
 }
