@@ -78,6 +78,8 @@ or
 $ yarn run json-server
 ```
 
+Open a new terminal.
+
 Run Angular `serve` command:
 
 ```
