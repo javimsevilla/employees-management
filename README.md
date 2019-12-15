@@ -1,75 +1,89 @@
-# EmployeesManagement
+# Employees Management
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
 
+## Pre requirements
+
+You will need:
+
+- [Git](https://git-scm.com/) Version Control System installed.
+- [NodeJS](https://nodejs.org/) and NPM.
+- (Optional) You can use [Yarn](https://yarnpkg.com/lang/en/) as an alternative package manager for Node packages.
+- [Angular CLI](https://cli.angular.io/) installed.
+- A Command Line Interface (aka. Command's Terminal/Console).
+
 ## Setup instructions
 
-Clone repo
+From your terminal...
+
+Clone this repository:
 
 ```
-git clone https://github.com/javimsevilla/employees-management.git
+$ git clone https://github.com/javimsevilla/employees-management.git
 ```
 
-Navigate app folder
+Navigate app folder:
 
 ```
-cd employees-management
+$ cd employees-management
 ```
 
-Install [JSON Server](https://github.com/typicode/json-server).
+Install dependencies:
+
+NPM
 
 ```
-npm install -g json-server
+$ npm install
 ```
 
-Test run JSON Server
+Yarn (Optional)
 
 ```
-cd employees-management
-json-server --watch src/app/db.json
+$ yarn
 ```
 
-You should see something like these:
+or
 
 ```
-$ json-server --watch src/app/db.json
-
-  \{^_^}/ hi!
-
-  Loading src/app/db.json
-  Done
-
-  Resources
-  http://localhost:3000/employees
-  http://localhost:3000/departments
-
-  Home
-  http://localhost:3000
-
-  Type s + enter at any time to create a snapshot of the database
-  Watching...
+$ yarn install
 ```
 
-<!-- ## Development server
+## Run instructions
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+From your terminal...
 
-## Code scaffolding
+Navigate project folder:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+$ cd employees-management
+```
 
-## Build
+Run json-server fake database:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+NPM
 
-## Running unit tests
+```
+$ npm run json-server
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Yarn (Optional)
 
-## Running end-to-end tests
+```
+$ yarn json-server
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+or
 
-## Further help
+```
+$ yarn run json-server
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md). -->
+Run Angular `serve` command:
+
+```
+$ ng serve
+```
+
+Open in browser at:
+
+- http://localhost:4200
