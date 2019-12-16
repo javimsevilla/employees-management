@@ -1,27 +1,91 @@
-# EmployeesManagement
+# Employees Management
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
 
-## Development server
+## Pre requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+You will need:
 
-## Code scaffolding
+- [Git](https://git-scm.com/) Version Control System installed.
+- [NodeJS](https://nodejs.org/) and NPM.
+- (Optional) You can use [Yarn](https://yarnpkg.com/lang/en/) as an alternative package manager for Node packages.
+- [Angular CLI](https://cli.angular.io/) installed.
+- A Command Line Interface (aka. Command's Terminal/Console).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Setup instructions
 
-## Build
+From your terminal...
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Clone this repository:
 
-## Running unit tests
+```
+$ git clone https://github.com/javimsevilla/employees-management.git
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Navigate app folder:
 
-## Running end-to-end tests
+```
+$ cd employees-management
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Install dependencies:
 
-## Further help
+NPM
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+$ npm install
+```
+
+Yarn (Optional)
+
+```
+$ yarn
+```
+
+or
+
+```
+$ yarn install
+```
+
+## Run instructions
+
+From your terminal...
+
+Navigate project folder:
+
+```
+$ cd employees-management
+```
+
+Run json-server fake database:
+
+NPM
+
+```
+$ npm run json-server
+```
+
+Yarn (Optional)
+
+```
+$ yarn json-server
+```
+
+or
+
+```
+$ yarn run json-server
+```
+
+Open a new terminal.
+
+Run Angular `serve` command:
+
+```
+$ ng serve
+```
+
+Open in browser at:
+
+- http://localhost:4200

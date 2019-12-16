@@ -1,0 +1,59 @@
+<h1>Empleados</h1>
+
+<mat-form-field class="full-width">
+  <mat-label>Ver empleados de</mat-label>
+  <mat-select
+    (selectionChange)="filterEmployeesByDepartment($event)"
+    [value]="selectedDepartmentId$ | async"
+  >
+    <mat-option [value]="-1">todos los departamentos</mat-option>
+    <mat-option
+      *ngFor="let department of departments$ | async"
+      [value]="department.id"
+    >
+      {{ department.name | lowercase }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field class="full-width">
+  <input
+    type="date"
+    matInput
+    placeholder="Ver empleados desde"
+    (change)="filterByStartDate($event.target.value)"
+  />
+</mat-form-field>
+
+<app-list-item
+  *ngFor="let employee of employees$ | async; trackBy: trackByEmployee"
+  (delete)="deleteEmployee(employee)"
+  (itemSelected)="editEmployee(employee)"
+>
+  <div class="employee-data">
+    <div class="employee-data-column employee-name">
+      <span class="employee-data-label">Nombre</span>
+      <span>{{ employee.name }}</span>
+    </div>
+    <div class="employee-data-column employee-last-name">
+      <span class="employee-data-label">Apellido</span>
+      <span>{{ employee.lastName }}</span>
+    </div>
+    <div class="employee-data-column employee-age">
+      <span class="employee-data-label">Edad</span>
+      <span>{{ employee.age }}</span>
+    </div>
+    <div class="employee-data-column employee-start-date">
+      <span class="employee-data-label">Antiguedad</span>
+      <span>{{ employee.startDate | date: 'dd/MM/yyyy' }}</span>
+    </div>
+    <div class="employee-data-column employee-department">
+      <span class="employee-data-label">Departamento</span>
+      <span>{{ getDepartmentNameById(employee.departmentId) | async }}</span>
+    </div>
+  </div>
+</app-list-item>
+
+<app-fab-button (click)="addNewEmployee()">
+  <mat-icon aria-hidden="false" aria-label="New">add</mat-icon>
+</app-fab-button>
